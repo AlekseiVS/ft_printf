@@ -9,7 +9,8 @@
 //# include "libft/libft.h"
 # include <unistd.h>
 
-# define SPEC "sSpdDioOuUxXcC"
+//# define SPEC "sSpdDioOuUxXcC"
+# define SPEC "sc"
 
 typedef enum    e_size
 {
