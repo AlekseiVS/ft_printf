@@ -8,9 +8,9 @@ int main()
     char *b1 = "abcde";
     char *b2 = "abcde";
 
-    ft_printf("%-7s", b1);
+    ft_printf("%7s", b1); 
     printf("\n");
-    printf("%-7s", b2);
+    printf("%7s", b2);
     printf("\n");
     return (0);
 }

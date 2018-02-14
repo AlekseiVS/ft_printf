@@ -1,10 +1,7 @@
 #include "ft_printf.h"
 
-void ft_not_valid_type(char c, t_spec *spec)
+void  ft_not_valid_type(char c, t_spec *spec)
 {
-    //printf("plus: %i\nminus: %i\nspace: %i\nhesh: %i\nzero: %i\nwidth: %d\nprecision: %d\nsize: %d\ntype: %c\n\n", (spec)->plus, (spec)->minus,
-    //(spec)->space, (spec)->hesh, (spec)->zero, (spec)->width, (spec)->precision, (spec)->size, (spec)->type);
-
     if (spec->minus == 1)
     {
         write (1, &c, 1);
@@ -56,7 +53,7 @@ void ft_search_width_precision(char **str_search, t_spec *spec)
         ln = ft_strlen(ft_itoa(spec->width));
         *str_search = *str_search + ln;
     }
-    if (**str_search == '.' && ft_isdigit(*((*str_search) + 1)) == 1)  
+    if (**str_search == '.') //&& ft_isdigit(*((*str_search) + 1)) == 1)  
     {
         (*str_search)++;
         spec->precision = ft_atoi(*str_search);
@@ -98,7 +95,7 @@ char *ft_search_spec_type(char *format)
         if (ft_strchr(SPEC, *format))
             return (format);
         if (*format == '-' || *format == '+' || *format == ' ' || *format == '#' || *format == '0' ||
-            (ft_isdigit(*format) == 1) || (*format == '.' && ft_isdigit(*(format + 1)) == 1) 
+            (ft_isdigit(*format) == 1) || *format == '.'/*(*format == '.' && ft_isdigit(*(format + 1)) == 1)*/
             || *format == 'h' || *format == 'l' || *format == 'j' || *format == 'z')
             format++;
         else
