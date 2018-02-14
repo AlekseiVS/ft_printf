@@ -7,11 +7,11 @@ void ft_search(char *format, t_spec *spec)
 
     if (!(ft_strchr(format, '%')))
     {
-        write(1, format, 1);
+        spec->result += write(1, format, 1);
         return ;
     }   
     spec->ln_text = ft_strchr(format, '%') - format;
-    write (1, format, spec->ln_text);
+    spec->result += write (1, format, spec->ln_text);
     type = ft_search_spec_type(format + spec->ln_text + 1);
     if (*type == '\0')
     {

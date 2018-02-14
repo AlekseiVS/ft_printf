@@ -17,24 +17,24 @@ void ft_initialization(t_spec *spec)
 
 int ft_printf(char *format, ...)
 {
-    int result;
     t_spec spec;
     va_list ap;
 	va_start(ap, format);
     
+    spec.result = 0;
     while(*format)
     {
         ft_initialization(&spec);   
 
-	    result = ft_search(format, &spec);
+	    ft_search(format, &spec);
         //printf("flag: %c\nwidth: %d\nprecision: %d\nsize: %d\ntype: %c\n", spec.flag, spec.width, spec.precision, spec.size, spec.type);
         if(spec.type == 'c')
-            ft_print_c(va_arg(ap, int), spec);
+            ft_print_c(va_arg(ap, int), &spec);
         else if(spec.type == 's')
-            result = ft_print_s(va_arg(ap, char *), spec);
+            spec.result += ft_print_s(va_arg(ap, char *), spec);
         format += (spec.ln_search + 1) + spec.ln_text;
     }
     va_end(ap);
-    return (result);
+    return (spec.result);
 }
 

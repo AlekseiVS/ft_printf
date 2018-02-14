@@ -2,15 +2,18 @@
 
 int main()
 {
+    int i = 0;
+    int j = 0;
     char a1 = 'a';
     char a2 = 'a';
 
-    char *b1 = "abcde";
-    char *b2 = "abcde";
+    //char *b1 = "abcde";
+    //char *b2 = "abcde";
 
-    ft_printf("%7s", b1); 
+    i = ft_printf("%5.2s is a string", ""); 
     printf("\n");
-    printf("%7s", b2);
+    j = printf("%5.2s is a string", "");
     printf("\n");
+    printf("main: %d\norig: %d\n", i, j);
     return (0);
 }

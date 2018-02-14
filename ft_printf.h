@@ -35,11 +35,12 @@ typedef struct  s_spec
     char        type;
     int         ln_search;
     int         ln_text;
+    int         result;
 }               t_spec;
 
 int ft_printf(char *format, ...);
 void ft_search(char *format, t_spec *spec);
-void ft_print_c(char c, t_spec spec);
+void ft_print_c(char c, t_spec *spec);
 int ft_print_s(char *s, t_spec spec);
 
 //Функции с ft_search.2.c
