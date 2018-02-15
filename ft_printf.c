@@ -32,8 +32,8 @@ int ft_printf(char *format, ...)
             ft_print_c(va_arg(ap, int), &spec);
         else if(spec.type == 's')
             spec.result += ft_print_s(va_arg(ap, char *), spec);
-        // else if(spec.type == 'd')
-        //     spec.result += ft_print_d(ap, spec);
+        else if(spec.type == 'd')
+            spec.result += ft_print_d(ap, spec);
         format += (spec.ln_search + 1) + spec.ln_text;
     }
     va_end(ap);
