@@ -27,28 +27,17 @@ char *ft_right(char *s, int width, int precision, char c)
 
     i = 0;
     j = 0;
-    //if (width >= 0)
-    //{
-        ln_c = width - precision;
-        snew = ft_strnew(width);
-        while(i < width)
-        {
-            if (i < ln_c)
-                snew[i] = c;
-            else
-                snew[i] = s[j++];
-            i++;
-        }
-    // }
-    // if (precision >= 0 && width == -1)
-    // {
-    //     snew = ft_strnew(precision);
-    //     while(i < precision)
-    //     {
-    //         snew[i] = s[i];
-    //         i++;
-    //     }
-    // }
+
+    ln_c = width - precision;
+    snew = ft_strnew(width);
+    while(i < width)
+    {
+        if (i < ln_c)
+            snew[i] = c;
+        else
+            snew[i] = s[j++];
+        i++;
+    }
     return (snew);
 }
 

@@ -10,9 +10,9 @@ int main()
     //char *b1 = "abcde";
     //char *b2 = "abcde";
 
-    i = ft_printf("%5.2s is a string", ""); 
+    i = ft_printf("%-.2s is a string", "ttt"); 
     printf("\n");
-    j = printf("%5.2s is a string", "");
+    j = printf("%-.2s is a string", "ttt");
     printf("\n");
     printf("main: %d\norig: %d\n", i, j);
     return (0);
