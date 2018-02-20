@@ -12,19 +12,16 @@
 
 #include "ft_printf.h"
 
-static	size_t		len_n(intmax_t n)
+static	size_t		len_n(uintmax_t n, int c)
 {
 	size_t len;
 
 	len = 0;
 	if (n == 0)
 		return (1);
-	if (n < 0)
-	{
+	if (c == 1)
 		len++;
-		n = -n;
-	}
-	while (n > 0)
+	while (n != 0)
 	{
 		n = n / 10;
 		len++;
@@ -34,26 +31,26 @@ static	size_t		len_n(intmax_t n)
 
 char			*ft_itoa(intmax_t n)
 {
-	intmax_t		len;
-	intmax_t		c;
+	int				len;
+	int				c;
 	char			*str;
+	uintmax_t 		u_n;
 	
-
-	len = len_n(n);
-	c = n;
-	// if (n == -2147483648)
-	// 	return (ft_strdup("-2147483648"));
-	n = ABS(n);
+	c = 0;
+	if (n < 0)
+		c = 1;
+	u_n = ABS(n);
+	len = len_n(u_n, c);
 	str = ft_strnew(len);
 	if (!str)
 		return (0);
 	while (len)
 	{
-		str[len - 1] = (n % 10) + '0';
-		n = n / 10;
+		str[len - 1] = (u_n % 10) + '0';
+		u_n = u_n / 10;
 		len--;
 	}
-	if (c < 0)
+	if (c == 1)
 		str[0] = '-';
 	return (str);
 }

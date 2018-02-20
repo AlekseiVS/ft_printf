@@ -7,15 +7,18 @@ int main()
     char a1 = 'a';
     char a2 = 'a';
 
-    int n1 = -2147483648;
-    int n2 = -2147483648;
+    int n1 = 55;
+    int n2 = 55;
     //char *b1 = "abcde";
     //char *b2 = "abcde";
 
-    i = ft_printf("res: %jd", n1); 
+    printf("\n------------------------------\n");
+
+    i = ft_printf("res main: %lld", -9223372036854775555); 
     printf("\n");
-    j = printf("res: %jd", n2);
-    printf("\n");
-    printf("main: %d\norig: %d\n", i, j);
+    j = printf("res orig: %lld", -9223372036854775555);
+
+    printf("\n------------------------------\n(return) main: %d\n(return) orig: %d\n------------------------------\n\n", i, j);
+
     return (0);
 }

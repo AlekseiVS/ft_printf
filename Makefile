@@ -12,7 +12,11 @@
 
 NAME = libftprintf.a
 
-FILE_C = ft_printf.c ft_search.1.1.c ft_search.2.c ft_print_c.c ft_print_s.c ft_strlen.c ft_strchr.c ft_strsub.c ft_isdigit.c ft_itoa.c ft_atoi.c ft_abs.c ft_strdup.c ft_strnew.c ft_memalloc.c ft_bzero.c ft_left_right.c ft_print_d.c
+FILE_C = ft_printf.c ft_search.1.1.c ft_search.2.c ft_print_c.c ft_print_s.c \
+ft_strlen.c ft_strchr.c ft_strsub.c ft_isdigit.c ft_itoa.c \
+ft_atoi.c ft_abs.c ft_strdup.c ft_strnew.c \
+ft_memalloc.c ft_bzero.c ft_left_right.c \
+ft_print_d.c ft_initialization.c
 
 FILE_O = $(FILE_C:.c=.o)
 
