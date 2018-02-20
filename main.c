@@ -12,13 +12,13 @@ int main()
     //char *b1 = "abcde";
     //char *b2 = "abcde";
 
-    printf("\n------------------------------\n");
+    printf("\n--------------------\n");
 
-    i = ft_printf("res main: %lld", -9223372036854775555); 
+    i = ft_printf("res main: %++ d", -42); 
     printf("\n");
-    j = printf("res orig: %lld", -9223372036854775555);
+    j = printf("res orig: %++ d", -42);
 
-    printf("\n------------------------------\n(return) main: %d\n(return) orig: %d\n------------------------------\n\n", i, j);
+    printf("\n--------------------\n(return) main: %d\n(return) orig: %d\n--------------------\n\n", i, j);
 
     return (0);
 }
