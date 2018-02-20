@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static	int		len_n(int n)
+static	size_t		len_n(intmax_t n)
 {
 	size_t len;
 
@@ -32,17 +32,18 @@ static	int		len_n(int n)
 	return (len);
 }
 
-char			*ft_itoa(int n)
+char			*ft_itoa(intmax_t n)
 {
-	int		len;
-	char	*str;
-	int		c;
+	intmax_t		len;
+	intmax_t		c;
+	char			*str;
+	
 
 	len = len_n(n);
 	c = n;
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
-	n = ft_abs(n);
+	// if (n == -2147483648)
+	// 	return (ft_strdup("-2147483648"));
+	n = ABS(n);
 	str = ft_strnew(len);
 	if (!str)
 		return (0);

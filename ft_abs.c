@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_abs(int n)
+# include "ft_printf.h"
+
+intmax_t	ft_abs(intmax_t n)
 {
 	return ((n < 0) ? -n : n);
 }

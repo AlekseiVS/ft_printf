@@ -6,11 +6,13 @@
 # include <stdarg.h>
 # include <string.h>
 # include <stdlib.h>
+//# include <stdint.h>
 //# include "libft/libft.h"
 # include <unistd.h>
 
-//# define SPEC "sSpdDioOuUxXcC"
-# define SPEC "sc"
+# define SPEC "sSpdDioOuUxXcC"
+# define ABS(n) ((n < 0) ? -n : n)
+//# define SPEC "sc"
 
 typedef enum    e_size
 {
@@ -59,13 +61,14 @@ char *ft_right(char *s, int width, int precision, char c);
 
 
 //libft
+
 size_t	ft_strlen(const char *str);
 char	*ft_strsub(char const *s, unsigned int start, size_t len);
 char	*ft_strchr(const char *s, int c);
-char	*ft_itoa(int n);
+char	*ft_itoa(intmax_t n);
 int		ft_isdigit(int c);
 int	    ft_atoi(const char *str);
-int	    ft_abs(int n);
+//intmax_t	    ft_abs(intmax_t n);
 char	*ft_strnew(size_t size);
 char	*ft_strdup(const char *str);
 void	*ft_memalloc(size_t size);

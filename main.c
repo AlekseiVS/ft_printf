@@ -7,12 +7,14 @@ int main()
     char a1 = 'a';
     char a2 = 'a';
 
+    int n1 = -2147483648;
+    int n2 = -2147483648;
     //char *b1 = "abcde";
     //char *b2 = "abcde";
 
-    i = ft_printf("%-.2s is a string", "ttt"); 
+    i = ft_printf("res: %jd", n1); 
     printf("\n");
-    j = printf("%-.2s is a string", "ttt");
+    j = printf("res: %jd", n2);
     printf("\n");
     printf("main: %d\norig: %d\n", i, j);
     return (0);
