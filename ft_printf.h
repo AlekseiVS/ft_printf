@@ -44,8 +44,8 @@ int     ft_printf(char *format, ...);
 void    ft_search(char *format, t_spec *spec);
 void    ft_print_c(char c, t_spec *spec);
 int     ft_print_s(char *s, t_spec spec);
-int     ft_print_d(va_list ap, t_spec spec);
-int     ft_print_u(va_list ap, t_spec spec);
+int     ft_print_d_i_D(va_list ap, t_spec spec);
+int     ft_print_u_U(va_list ap, t_spec spec);
 void    ft_initialization(t_spec *spec);
 char	*ft_itoa_base(uintmax_t n, int base);
 
