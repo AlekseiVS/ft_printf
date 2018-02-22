@@ -39,28 +39,31 @@ typedef struct  s_spec
 }               t_spec;
 
 //Общие функции в отдельных файлах
-int ft_printf(char *format, ...);
-void ft_search(char *format, t_spec *spec);
-void ft_print_c(char c, t_spec *spec);
-int ft_print_s(char *s, t_spec spec);
-int ft_print_d(va_list ap, t_spec spec);
-void ft_initialization(t_spec *spec);
+
+int     ft_printf(char *format, ...);
+void    ft_search(char *format, t_spec *spec);
+void    ft_print_c(char c, t_spec *spec);
+int     ft_print_s(char *s, t_spec spec);
+int     ft_print_d(va_list ap, t_spec spec);
+int     ft_print_u(va_list ap, t_spec spec);
+void    ft_initialization(t_spec *spec);
+char	*ft_itoa_base(uintmax_t n, int base);
+
 
 //Функции с ft_search.2.c
 
-void ft_not_valid_type(char c, t_spec *spec);
-void ft_search_flag(char *str_search, t_spec *spec);
-void ft_search_width_precision(char **str_search, t_spec *spec);
-void ft_search_size(char **str_search, t_spec *spec);
-char *ft_search_spec_type(char *format);
+void    ft_not_valid_type(char c, t_spec *spec);
+void    ft_search_flag(char *str_search, t_spec *spec);
+void    ft_search_width_precision(char **str_search, t_spec *spec);
+void    ft_search_size(char **str_search, t_spec *spec);
+char    *ft_search_spec_type(char *format);
 
 
 
 //Функции ft_left_right.c
 
-char *ft_left(char *s, int width, int precision, char c);
-char *ft_right(char *s, int width, int precision, char c);
-
+char    *ft_left(char *s, int width, int precision, char c);
+char    *ft_right(char *s, int width, int precision, char c);
 
 
 
@@ -78,5 +81,7 @@ void	*ft_memalloc(size_t size);
 void	ft_bzero(void *b, size_t length);
 void	*ft_memset(void *dst, int c, size_t n);
 void	ft_putstr(char const *s);
+
+
 
 #endif
