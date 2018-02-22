@@ -14,9 +14,9 @@ int main()
 
     printf("\n--------------------\n");
 
-    i = ft_printf("res main: %.10d", -42); 
+    i = ft_printf("res main: moulitest: %30d", 10000); 
     printf("\n");
-    j = printf("res orig: %.10d", -42);
+    j = printf("res orig: moulitest: %30d", 10000);
 
     printf("\n--------------------\n(return) main: %d\n(return) orig: %d\n--------------------\n\n", i, j);
 
