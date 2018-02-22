@@ -14,9 +14,9 @@ int main()
 
     printf("\n--------------------\n");
 
-    i = ft_printf("res main: %++ d", -42); 
+    i = ft_printf("res main: %.10d", -42); 
     printf("\n");
-    j = printf("res orig: %++ d", -42);
+    j = printf("res orig: %.10d", -42);
 
     printf("\n--------------------\n(return) main: %d\n(return) orig: %d\n--------------------\n\n", i, j);
 

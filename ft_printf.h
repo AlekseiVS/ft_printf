@@ -49,7 +49,7 @@ void ft_initialization(t_spec *spec);
 //Функции с ft_search.2.c
 
 void ft_not_valid_type(char c, t_spec *spec);
-void ft_search_flag(char **str_search, t_spec *spec);
+void ft_search_flag(char *str_search, t_spec *spec);
 void ft_search_width_precision(char **str_search, t_spec *spec);
 void ft_search_size(char **str_search, t_spec *spec);
 char *ft_search_spec_type(char *format);

@@ -25,7 +25,7 @@ void ft_search(char *format, t_spec *spec)
     
     while (*str_search)
     {
-        ft_search_flag(&str_search, spec);
+        ft_search_flag(str_search, spec);
         ft_search_width_precision(&str_search, spec);
         ft_search_size(&str_search, spec);
         str_search++;
