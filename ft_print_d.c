@@ -83,11 +83,13 @@ int ft_print_d(va_list ap, t_spec spec)
         }
         else if (spec.zero == 0 && spec.plus == 0 && spec.width < 0 && spec.precision > 0 && spec.precision < ln && spec.minus == 0)
             result = ft_right(s, ln, ln, ' ');
-        else if ((spec.zero == 0 || spec.zero == 1) && spec.plus == 0 && spec.width > 0 && spec.precision > 0 && (spec.precision < spec.width) && spec.minus == 0)
+        else if ((spec.zero == 0 || spec.zero == 1) && spec.plus == 0 && spec.width > 0 && spec.precision > 0 && (spec.precision < spec.width) && spec.minus == 0 && spec.precision >= ln)
         {
             result = ft_right(s, spec.precision, ln, '0');
             result = ft_right(result, spec.width, ft_strlen(result), ' ');
         }
+        else if ((spec.zero == 0 || spec.zero == 1) && spec.plus == 0 && spec.width > 0 && spec.precision >= 0 && (spec.precision < spec.width) && spec.minus == 0 && spec.precision < ln)
+            result = ft_right(s, spec.width, ln, ' ');
         else if (spec.zero == 0 && spec.plus == 0 && spec.width > 0 && spec.precision > 0 && spec.minus == 1)
         {
             result = ft_right(s, spec.precision, ln, '0');

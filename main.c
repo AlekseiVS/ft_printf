@@ -7,16 +7,17 @@ int main()
     char a1 = 'a';
     char a2 = 'a';
 
-    int n1 = 55;
-    int n2 = 55;
+    int n1 = 427;
+    int n2 = 427;
+    //int n2 = 55;
     //char *b1 = "abcde";
     //char *b2 = "abcde";
 
     printf("\n--------------------\n");
 
-    i = ft_printf("res main: moulitest: %30d", 10000); 
+    i = ft_printf("|%5.0d|", n1); 
     printf("\n");
-    j = printf("res orig: moulitest: %30d", 10000);
+    j = printf("|%5.0d|", n2);
 
     printf("\n--------------------\n(return) main: %d\n(return) orig: %d\n--------------------\n\n", i, j);
 
