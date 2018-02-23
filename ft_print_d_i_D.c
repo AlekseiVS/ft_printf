@@ -28,17 +28,16 @@ int ft_print_d_i_D(va_list ap, t_spec spec)
     ln = ft_strlen(s);
     if (spec.width >= 0 || spec.precision >= 0 || spec.plus == 1 || spec.minus == 1 || spec.zero == 1 || spec.space == 1)
     {
-        result = ft_string_formation(s, spec, ln, n);
+        result = ft_string_formation_d(s, spec, ln, n);
         ln = ft_strlen(result);
         write(1, result, ln);
-        free(result);
+        //free(result);
         return (ln);
     }
     else
     {
-        ln = ft_strlen(s);
         write(1, s, ln);
-        free(s);
+        //free(s);
         return (ln);
     }
 }

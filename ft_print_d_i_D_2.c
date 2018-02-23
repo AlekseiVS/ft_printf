@@ -95,7 +95,7 @@ static char *ft_sf3(char *s, t_spec spec, int ln, intmax_t n)
     return (result);
 }
 
-char *ft_string_formation(char *s, t_spec spec, int ln, intmax_t n)
+char *ft_string_formation_d(char *s, t_spec spec, int ln, intmax_t n)
 {
     char *result;
 
