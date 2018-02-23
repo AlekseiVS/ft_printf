@@ -15,9 +15,9 @@ int main()
 
     printf("\n--------------------\n");
 
-    i = ft_printf("|@moulitest: %-10.5d|", n); 
+    i = ft_printf("|@moulitest: %+7.5d|", n); 
     printf("\n");
-    j = printf("|@moulitest: %-10.5d|", n);
+    j = printf("|@moulitest: %+7.5d|", n);
 
     printf("\n--------------------\n(return) main: %d\n(return) orig: %d\n--------------------\n\n", i, j);
 

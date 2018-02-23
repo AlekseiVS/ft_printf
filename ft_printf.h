@@ -68,10 +68,8 @@ char    *ft_right(char *s, int width, int precision, char c);
 
 //Функции ft_print_d_i_D_2.c
 
-char *ft_p1(char *s, t_spec spec, int ln, intmax_t n);
-char *ft_p2(char *s, t_spec spec, int ln, intmax_t n);
-char *ft_p3(char *s, t_spec spec, int ln, intmax_t n);
-char *ft_p4(char *s, t_spec spec, int ln, intmax_t n);
+char *ft_string_formation(char *s, t_spec spec, int ln, intmax_t n);
+
 
 
 //libft
