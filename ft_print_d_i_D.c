@@ -119,6 +119,7 @@ int ft_print_d_i_D(va_list ap, t_spec spec)
     }
     else
     {
+        
         write(1, s, ft_strlen(s));
         return (ft_strlen(s));
     }
