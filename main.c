@@ -7,17 +7,17 @@ int main()
     char a1 = 'a';
     char a2 = 'a';
 
-    int n1 = 250;
-    int n2 = 250;
+    int n = -42;
+    //int n2 = 250;
     //int n2 = 55;
     //char *b1 = "abcde";
     //char *b2 = "abcde";
 
     printf("\n--------------------\n");
 
-    i = ft_printf("|%u|", n1); 
+    i = ft_printf("|%-+10.5d|", n); 
     printf("\n");
-    j = printf("|%u|", n2);
+    j = printf("|%-+10.5d|", n);
 
     printf("\n--------------------\n(return) main: %d\n(return) orig: %d\n--------------------\n\n", i, j);
 

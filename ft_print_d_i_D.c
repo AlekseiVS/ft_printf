@@ -29,89 +29,183 @@ int ft_print_d_i_D(va_list ap, t_spec spec)
 
     if (spec.width >= 0 || spec.precision >= 0 || spec.plus == 1 || spec.minus == 1 || spec.zero == 1 || spec.space == 1)
     {
-        if ((spec.space == 1 && spec.plus == 0 && spec.width < 0) && (n > 0))
-            result = ft_right(s, ln + 1, ln, ' ');
-        else if ((spec.space == 1 && spec.plus == 0 && spec.width < 0) && (n < 0))
-            result = ft_right(s, ln, ln, ' ');
-        else if ((spec.space == 0 && spec.plus == 1 && spec.width < 0) && (n >= 0))
-            result = ft_right(s, ln + 1, ln, '+');
-        else if ((spec.space == 0 && spec.plus == 1 && spec.width < 0) && (n < 0))
-            result = ft_right(s, ln, ln, '+');
-        else if ((spec.space == 1 && spec.plus == 1 && spec.width < 0) && (n > 0))
-            result = ft_right(s, ln + 1, ln, '+');
-        else if ((spec.space == 1 && spec.plus == 1 && spec.width < 0) && (n < 0))
-            result = ft_right(s, ln, ln, ' ');
-        else if ((spec.space == 0 || spec.space == 1) && (spec.plus == 0 || spec.plus == 1) && (spec.minus == 0 || spec.minus == 1) && spec.width < ln && spec.precision < 0)
-            result = ft_strsub(s, 0, ln);
-        else if ((spec.zero == 1 && spec.plus == 0 && spec.width < 0) && (n < 0))
-            result = ft_right(s, ln, ln, ' ');
-        else if (spec.zero == 0 && spec.precision < 0 && spec.width > 0 && spec.minus == 0)
-            result = ft_right(s, spec.width, ln, ' ');
-        else if ((spec.zero == 1 && spec.plus == 0 && spec.width > 0 && spec.precision < 0 && spec.minus == 0) && (n > 0))
-            result = ft_right(s, spec.width, ln, '0');
-        else if ((spec.zero == 1 && spec.plus == 1 && spec.width > 0) && (n > 0))
+        if (ln >= spec.width && ln >= spec.precision && (n < 0 || n >= 0))
         {
-            result = ft_right(s, spec.width, ln, '0');
-            result[0] = '+'; 
+            if ((spec.plus == 1 && n >= 0) || (spec.plus == 1 && spec.space == 1 && n >= 0))
+                result = ft_right(s, ln + 1, ln, '+');
+            else if (spec.space == 1 && n >= 0)
+                result = ft_right(s, ln + 1, ln, ' ');
+            else
+                result = s;
         }
-        else if ((spec.zero == 1 && (spec.plus == 0 || spec.plus == 1 ) && spec.minus == 0 && spec.width > 0) && (n < 0))
+        else if (ln <= spec.width && ln >= spec.precision)
         {
-            result = ft_right(++s, spec.width, ln - 1, '0');
-            result[0] = '-'; 
+            if (spec.minus == 1)
+                result = ft_left(s, spec.width, ln, ' ');
+            else if (spec.zero == 1 && spec.plus == 1 && n > 0)
+            {
+                result = ft_right(s, spec.width, ln, '0');
+                result[0] = '+';
+            }
+            else if ((spec.zero == 1 && n < 0) || (spec.zero == 1 && spec.plus == 1 && n < 0))
+            {
+                result = ft_right(++s, spec.width + 1, ln, '0');
+                result[0] = '-';
+            }   
+            else if (spec.zero == 1 && n > 0)
+                result = ft_right(s, spec.width, ln, '0');
+            else
+                result = ft_right(s, spec.width, ln, ' ');
         }
-        else if ((spec.zero == 0 || spec.zero == 1) && spec.plus == 0 && spec.width > 0 && spec.precision < 0 && spec.minus == 1)
-            result = ft_left(s, spec.width, ln, ' ');
-        else if (spec.zero == 0 && spec.plus == 0 && spec.width <= spec.precision && spec.precision >= 0 && spec.precision >= ln && spec.minus == 0 && n > 0)
-            result = ft_right(s, spec.precision, ln, '0');
-        else if (spec.zero == 0 && spec.plus == 0 && spec.width <= spec.precision && spec.precision >= 0 && spec.precision < ln && spec.minus == 0 && n > 0)
-            result = ft_right(s, ln, ln, '0');
-        else if (spec.zero == 0 && spec.plus == 0 && spec.width <= spec.precision && spec.precision >= 0 && spec.minus == 0 && n == 0)
-            result = "";
-        else if (spec.zero == 0 && spec.plus == 0 && spec.width >= spec.precision && spec.precision >= 0 && spec.minus == 0 && n == 0)
-            result = ft_right(s, spec.width, 0, ' ');
-        else if (spec.zero == 0 && spec.plus == 0 && spec.width <= spec.precision && spec.precision > 0 && spec.precision >= ln && spec.minus == 0 && n < 0)
+        else if (ln <= spec.width && ln < spec.precision && spec.width > spec.precision)
         {
-            result = ft_right(s + 1, spec.precision + 2, ln, '0');
-            result[0] = '-';
+            if (n < 0)
+            {
+                result = ft_right(++s, spec.width, ln, '0');
+                result[0] = '-';
+                result = ft_right(result, spec.width, spec.precision + 1, ' ');
+            }
+            else if (spec.minus == 1 && spec.plus == 1)
+            {
+                result = ft_right(s, spec.precision + 1, ln, '0');
+                result[0] = '+';
+                result = ft_left(result, spec.width, spec.precision + 1, ' ');
+                
+            }
+            else if (spec.plus == 1)
+            {
+                result = ft_right(s, spec.precision + 1, ln, '0');
+                result[0] = '+';
+                result = ft_right(result, spec.width, spec.precision + 1, ' ');
+            }
+            else if (spec.minus == 1)
+            {
+                result = ft_right(s, spec.precision, ln, '0');
+                result = ft_left(result, spec.width, spec.precision, ' ');
+            }
+            else
+                {
+                    result = ft_right(s, spec.precision, ln, '0');
+                    result = ft_right(result, spec.width, spec.precision, ' ');
+                }
         }
-        else if (spec.zero == 0 && spec.plus == 0 && spec.width <= spec.precision && spec.precision > 0 && spec.precision <= ln && spec.minus == 0)
-            result = ft_right(s, ln, ln, '0');
-        else if (spec.zero == 0 && spec.plus == 1 && (spec.width < spec.precision) && spec.precision > 0 && spec.precision > ln && spec.minus == 0)
+        else if (ln < spec.precision && spec.width <= spec.precision)
         {
-            result = ft_right(s, spec.precision + 1, ln, '0');
-            result[0] = '+';
+            if (spec.plus == 1)
+            {
+                result = ft_right(s, spec.precision + 1, ln, '0');
+                result[0] = '+';
+            }
+            else if ( n < 0) 
+            {
+                result = ft_right(++s, spec.precision + 2, ln, '0');
+                result[0] = '-';
+            }   
+            else
+                result = ft_right(s, spec.precision, ln, '0');
         }
-        else if (spec.zero == 0 && spec.plus == 0 && spec.width < 0 && spec.precision > 0 && spec.precision < ln && spec.minus == 0)
-            result = ft_right(s, ln, ln, ' ');
-        else if ((spec.zero == 0 || spec.zero == 1) && spec.plus == 0 && spec.width > 0 && spec.precision > 0 && (spec.precision < spec.width) && spec.minus == 0 && spec.precision >= ln)
-        {
-            result = ft_right(s, spec.precision, ln, '0');
-            result = ft_right(result, spec.width, ft_strlen(result), ' ');
-        }
-        else if ((spec.zero == 0 || spec.zero == 1) && spec.plus == 0 && spec.width > 0 && spec.precision >= 0 && (spec.precision < spec.width) && spec.minus == 0 && spec.precision < ln)
-            result = ft_right(s, spec.width, ln, ' ');
-        else if (spec.zero == 0 && spec.plus == 0 && spec.width > 0 && spec.precision > 0 && spec.minus == 1)
-        {
-            result = ft_right(s, spec.precision, ln, '0');
-            result = ft_left(result, spec.width, ft_strlen(result), ' ');
-        }
-        else if (spec.zero == 0 && spec.plus == 1 && spec.width > spec.precision && spec.minus == 1)
-        {
-            result = ft_right(s, spec.precision + 1, ln, '0');
-            result = ft_left(result, spec.width, ft_strlen(result), ' ');
-            result[0] = '+';
-        }
-        else if (spec.zero == 0 && spec.plus == 1 && spec.width < spec.precision && spec.minus == 1)
-        {
-            result = ft_right(s, spec.precision + 1, ln, '0');
-            result[0] = '+';
-        }
-        else if (spec.zero == 0 && spec.plus == 1 && spec.width > 0 && spec.precision > 0 && (spec.precision < spec.width) && spec.minus == 0)
-        {
-            result = ft_right(s, spec.precision + 1, ln, '0');
-            result[0] = '+';
-            result = ft_right(result, spec.width, ft_strlen(result), ' ');
-        }
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // if ((spec.space == 1 && spec.plus == 0 && spec.width < 0) && (n > 0))
+        //     result = ft_right(s, ln + 1, ln, ' ');
+        // else if ((spec.space == 1 && spec.plus == 0 && spec.width < 0) && (n < 0))
+        //     result = ft_right(s, ln, ln, ' ');
+        // else if ((spec.space == 0 && spec.plus == 1 && spec.width < 0) && (n >= 0))
+        //     result = ft_right(s, ln + 1, ln, '+');
+        // else if ((spec.space == 0 && spec.plus == 1 && spec.width < 0) && (n < 0))
+        //     result = ft_right(s, ln, ln, '+');
+        // else if ((spec.space == 1 && spec.plus == 1 && spec.width < 0) && (n > 0))
+        //     result = ft_right(s, ln + 1, ln, '+');
+        // else if ((spec.space == 1 && spec.plus == 1 && spec.width < 0) && (n < 0))
+        //     result = ft_right(s, ln, ln, ' ');
+        // else if ((spec.space == 0 || spec.space == 1) && (spec.plus == 0 || spec.plus == 1) && (spec.minus == 0 || spec.minus == 1) && spec.width < ln && spec.precision < 0)
+        //     result = ft_strsub(s, 0, ln);
+        // else if ((spec.zero == 1 && spec.plus == 0 && spec.width < 0) && (n < 0))
+        //     result = ft_right(s, ln, ln, ' ');
+        // else if (spec.zero == 0 && spec.precision < 0 && spec.width > 0 && spec.minus == 0)
+        //     result = ft_right(s, spec.width, ln, ' ');
+        // else if ((spec.zero == 1 && spec.plus == 0 && spec.width > 0 && spec.precision < 0 && spec.minus == 0) && (n > 0))
+        //     result = ft_right(s, spec.width, ln, '0');
+        // else if ((spec.zero == 1 && spec.plus == 1 && spec.width > 0) && (n > 0))
+        // {
+        //     result = ft_right(s, spec.width, ln, '0');
+        //     result[0] = '+'; 
+        // }
+        // else if ((spec.zero == 1 && (spec.plus == 0 || spec.plus == 1 ) && spec.minus == 0 && spec.width > 0) && (n < 0))
+        // {
+        //     result = ft_right(++s, spec.width, ln - 1, '0');
+        //     result[0] = '-'; 
+        // }
+        // else if ((spec.zero == 0 || spec.zero == 1) && spec.plus == 0 && spec.width > 0 && spec.precision < 0 && spec.minus == 1)
+        //     result = ft_left(s, spec.width, ln, ' ');
+        // else if (spec.zero == 0 && spec.plus == 0 && spec.width <= spec.precision && spec.precision >= 0 && spec.precision >= ln && spec.minus == 0 && n > 0)
+        //     result = ft_right(s, spec.precision, ln, '0');
+        // else if (spec.zero == 0 && spec.plus == 0 && spec.width <= spec.precision && spec.precision >= 0 && spec.precision < ln && spec.minus == 0 && n > 0)
+        //     result = ft_right(s, ln, ln, '0');
+        // else if (spec.zero == 0 && spec.plus == 0 && spec.width <= spec.precision && spec.precision >= 0 && spec.minus == 0 && n == 0)
+        //     result = "";
+        // else if (spec.zero == 0 && spec.plus == 0 && spec.width >= spec.precision && spec.precision >= 0 && spec.minus == 0 && n == 0)
+        //     result = ft_right(s, spec.width, 0, ' ');
+        // else if (spec.zero == 0 && spec.plus == 0 && spec.width <= spec.precision && spec.precision > 0 && spec.precision >= ln && spec.minus == 0 && n < 0)
+        // {
+        //     result = ft_right(s + 1, spec.precision + 2, ln, '0');
+        //     result[0] = '-';
+        // }
+        // else if (spec.zero == 0 && spec.plus == 0 && spec.width <= spec.precision && spec.precision > 0 && spec.precision <= ln && spec.minus == 0)
+        //     result = ft_right(s, ln, ln, '0');
+        // else if (spec.zero == 0 && spec.plus == 1 && (spec.width < spec.precision) && spec.precision > 0 && spec.precision > ln && spec.minus == 0)
+        // {
+        //     result = ft_right(s, spec.precision + 1, ln, '0');
+        //     result[0] = '+';
+        // }
+        // else if (spec.zero == 0 && spec.plus == 0 && spec.width < 0 && spec.precision > 0 && spec.precision < ln && spec.minus == 0)
+        //     result = ft_right(s, ln, ln, ' ');
+        // else if ((spec.zero == 0 || spec.zero == 1) && spec.plus == 0 && spec.width > 0 && spec.precision > 0 && (spec.precision < spec.width) && spec.minus == 0 && spec.precision >= ln)
+        // {
+        //     result = ft_right(s, spec.precision, ln, '0');
+        //     result = ft_right(result, spec.width, ft_strlen(result), ' ');
+        // }
+        // else if ((spec.zero == 0 || spec.zero == 1) && spec.plus == 0 && spec.width > 0 && spec.precision >= 0 && (spec.precision < spec.width) && spec.minus == 0 && spec.precision < ln)
+        //     result = ft_right(s, spec.width, ln, ' ');
+        // else if (spec.zero == 0 && spec.plus == 0 && spec.width > 0 && spec.precision > 0 && spec.minus == 1)
+        // {
+        //     result = ft_right(s, spec.precision, ln, '0');
+        //     result = ft_left(result, spec.width, ft_strlen(result), ' ');
+        // }
+        // else if (spec.zero == 0 && spec.plus == 1 && spec.width > spec.precision && spec.minus == 1)
+        // {
+        //     result = ft_right(s, spec.precision + 1, ln, '0');
+        //     result = ft_left(result, spec.width, ft_strlen(result), ' ');
+        //     result[0] = '+';
+        // }
+        // else if (spec.zero == 0 && spec.plus == 1 && spec.width < spec.precision && spec.minus == 1)
+        // {
+        //     result = ft_right(s, spec.precision + 1, ln, '0');
+        //     result[0] = '+';
+        // }
+        // else if (spec.zero == 0 && spec.plus == 1 && spec.width > 0 && spec.precision > 0 && (spec.precision < spec.width) && spec.minus == 0)
+        // {
+        //     result = ft_right(s, spec.precision + 1, ln, '0');
+        //     result[0] = '+';
+        //     result = ft_right(result, spec.width, ft_strlen(result), ' ');
+        // }
 
 
 
