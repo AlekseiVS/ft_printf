@@ -9,14 +9,14 @@ static char *ft_sf1(char *s, t_spec spec, int ln, intmax_t n)
     else if (spec.zero == 1 && spec.plus == 1 && n > 0)
     {
         result = ft_right(s, spec.width, ln, '0');
-    result[0] = '+';
+        result[0] = '+';
     }
     else if ((spec.zero == 1 && n < 0) || (spec.zero == 1 && spec.plus == 1 && n < 0))
     {
         result = ft_right(++s, spec.width + 1, ln, '0');
         result[0] = '-';
     }   
-    else if (spec.zero == 1 && n >= 0)
+    else if (spec.zero == 1 && n >= 0 && spec.precision < 0)
         result = ft_right(s, spec.width, ln, '0');
     else if (n == 0)
         result = ft_right("", spec.width, 0, ' ');
@@ -89,7 +89,12 @@ static char *ft_sf3(char *s, t_spec spec, int ln, intmax_t n)
     {
         result = ft_right(++s, spec.precision + 2, ln, '0');
         result[0] = '-';
-    }   
+    }
+    else if (spec.space == 1) 
+    {
+        result = ft_right(s, spec.precision + 1, ln, '0');
+        result[0] = ' ';
+    }      
     else
         result = ft_right(s, spec.precision, ln, '0');
     return (result);

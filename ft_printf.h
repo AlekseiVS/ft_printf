@@ -42,10 +42,13 @@ typedef struct  s_spec
 
 int     ft_printf(char *format, ...);
 void    ft_search(char *format, t_spec *spec);
+
 void    ft_print_c(char c, t_spec *spec);
 int     ft_print_s(char *s, t_spec spec);
 int     ft_print_d_i_D(va_list ap, t_spec spec);
 int     ft_print_u_U(va_list ap, t_spec spec);
+int     ft_print_o_O(va_list ap, t_spec spec);
+
 void    ft_initialization(t_spec *spec);
 char	*ft_itoa_base(uintmax_t n, int base);
 
@@ -67,10 +70,11 @@ char    *ft_right(char *s, int width, int precision, char c);
 
 
 //Функции ft_print_d_i_D_2.c
+//Функции ft_print_u_U_2.c
 
 char *ft_string_formation_d(char *s, t_spec spec, int ln, intmax_t n);
 char *ft_string_formation_u(char *s, t_spec spec, int ln, uintmax_t n);
-
+char *ft_string_formation_o(char *s, t_spec spec, int ln, uintmax_t n);
 
 
 //libft
@@ -91,3 +95,4 @@ void	ft_putstr(char const *s);
 
 
 #endif
+

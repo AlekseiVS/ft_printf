@@ -7,7 +7,7 @@ int main()
     char a1 = 'a';
     char a2 = 'a';
 
-    int n = 4242;
+    int n = 42;
     //int n2 = 250;
     //int n2 = 55;
     //char *b1 = "abcde";
@@ -15,9 +15,9 @@ int main()
 
     printf("\n--------------------\n");
 
-    i = ft_printf("|@moulitest: %.d %5.0u|", 0, 0); 
+    i = ft_printf("|% .2d|", n); 
     printf("\n");
-    j = printf("|@moulitest: %.d %5.0u|", 0, 0);
+    j = printf("|% .2d|", n);
 
     printf("\n--------------------\n(return) main: %d\n(return) orig: %d\n--------------------\n\n", i, j);
 

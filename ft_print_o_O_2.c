@@ -5,12 +5,30 @@ static char *ft_sf1(char *s, t_spec spec, int ln, uintmax_t n)
     char *result;
 
     result = 0;
-    if (spec.minus == 1)
+    if (spec.minus == 1 && spec.hesh == 0)
         result = ft_left(s, spec.width, ln, ' ');
     else if (spec.zero == 1 && spec.precision < 0)
         result = ft_right(s, spec.width, ln, '0');
+    else if (spec.hesh == 1 || (spec.hesh == 1 && spec.minus == 1))
+    {
+        if (spec.minus == 1)
+        {
+            result = ft_right(s, ln + 1, ln, '0');
+            result = ft_left(result, spec.width, ft_strlen(result), ' ');
+        }
+        else if (n == 0)
+        {
+            result = ft_right(s, ln, ln, '0');
+            result = ft_right(result, spec.width, ft_strlen(result), ' ');
+        }
+        else
+        {
+            result = ft_right(s, ln + 1, ln, '0');
+            result = ft_right(result, spec.width, ft_strlen(result), ' ');
+        }
+    }
     else if (n == 0)
-        result = ft_right("", spec.width, 0, ' ');
+        result = ft_right(s, spec.width, 0, ' ');
     else
         result = ft_right(s, spec.width, ln, ' ');
     return (result);
@@ -31,19 +49,19 @@ static char *ft_sf2(char *s, t_spec spec, int ln, char *result)
     return (result);
 }
 
-char *ft_string_formation_u(char *s, t_spec spec, int ln, uintmax_t n)
+char *ft_string_formation_o(char *s, t_spec spec, int ln, uintmax_t n)
 {
     char *result;
 
     result = 0;
     if (ln >= spec.width && ln >= spec.precision)
     {
-        // if (spec.space == 1)
-        //     result = ft_right(s, ln + 1, ln, ' ');
-        if (spec.hesh == 1)
-            result = ft_right(s, ln + 1, ln, '0');
-        else if (n == 0)
+        if (spec.space == 1)
+            result = ft_right(s, ln + 1, ln, ' ');
+        else if (n == 0 && spec.hesh == 0)
             result = "";
+        else if (n == 0 && spec.hesh == 1)
+            result = "0";
         else
             result = s;
     }
