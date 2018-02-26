@@ -57,7 +57,7 @@ void ft_search_width_precision(char **str_search, t_spec *spec)
 {
     int ln;
 
-    if (ft_isdigit(**str_search) == 1)
+    if (ft_isdigit(**str_search) == 1 && **str_search != '0')
     {
         spec->width = ft_atoi(*str_search);
         ln = ft_strlen(ft_itoa(spec->width));

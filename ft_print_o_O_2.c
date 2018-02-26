@@ -56,16 +56,21 @@ char *ft_string_formation_o(char *s, t_spec spec, int ln, uintmax_t n)
     result = 0;
     if (ln >= spec.width && ln >= spec.precision)
     {
-        if (spec.space == 1)
-            result = ft_right(s, ln + 1, ln, ' ');
-        else if (n == 0 && spec.hesh == 0)
+        // if (spec.space == 1)
+        //     result = ft_right(s, ln + 1, ln, ' ');
+        if (n == 0 && spec.hesh == 0)
             result = "";
-        else if (n == 0 && spec.hesh == 1)
+        else if (spec.hesh == 1 && n == 0)
             result = "0";
+        else if (spec.hesh == 1 && n != 0)
+        {
+            result = ft_right(s, ln + 1, ln, '0');
+            //result = ft_right(result, spec.width + 1, ft_strlen(result), ' ');
+        } 
         else
             result = s;
     }
-    else if (ln <= spec.width && ln > spec.precision)
+    else if (ln <= spec.width && ln >= spec.precision)
         result = ft_sf1(s, spec, ln, n);
     else if (ln <= spec.width && ln <= spec.precision && spec.width > spec.precision)
         result = ft_sf2(s, spec, ln, result);

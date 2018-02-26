@@ -48,6 +48,7 @@ int     ft_print_s(char *s, t_spec spec);
 int     ft_print_d_i_D(va_list ap, t_spec spec);
 int     ft_print_u_U(va_list ap, t_spec spec);
 int     ft_print_o_O(va_list ap, t_spec spec);
+int     ft_print_x_X(va_list ap, t_spec spec);
 
 void    ft_initialization(t_spec *spec);
 char	*ft_itoa_base(uintmax_t n, int base);
@@ -75,6 +76,7 @@ char    *ft_right(char *s, int width, int precision, char c);
 char *ft_string_formation_d(char *s, t_spec spec, int ln, intmax_t n);
 char *ft_string_formation_u(char *s, t_spec spec, int ln, uintmax_t n);
 char *ft_string_formation_o(char *s, t_spec spec, int ln, uintmax_t n);
+char *ft_string_formation_x(char *s, t_spec spec, int ln, uintmax_t n);
 
 
 //libft
@@ -91,8 +93,8 @@ void	*ft_memalloc(size_t size);
 void	ft_bzero(void *b, size_t length);
 void	*ft_memset(void *dst, int c, size_t n);
 void	ft_putstr(char const *s);
-
-
+char	*ft_strjoin(char const *s1, char const *s2);
+int     ft_toupper(int c);
 
 #endif
 
