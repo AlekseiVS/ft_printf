@@ -18,7 +18,8 @@ ft_atoi.c ft_abs.c ft_strdup.c ft_strnew.c \
 ft_memalloc.c ft_bzero.c ft_left_right.c \
 ft_print_d_i_D.c ft_initialization.c ft_itoa_base.c ft_print_u_U.c \
 ft_print_d_i_D_2.c ft_print_u_U_2.c ft_print_o_O.c ft_print_o_O_2.c \
-ft_print_x_X.c ft_print_x_X_2.c ft_strjoin.c ft_toupper.c
+ft_print_x_X_p.c ft_print_x_X_p_2.c ft_strjoin.c ft_toupper.c \
+ft_string_formation_p.c
 
 FILE_O = $(FILE_C:.c=.o)
 

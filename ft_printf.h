@@ -48,7 +48,7 @@ int     ft_print_s(char *s, t_spec spec);
 int     ft_print_d_i_D(va_list ap, t_spec spec);
 int     ft_print_u_U(va_list ap, t_spec spec);
 int     ft_print_o_O(va_list ap, t_spec spec);
-int     ft_print_x_X(va_list ap, t_spec spec);
+int     ft_print_x_X_p(va_list ap, t_spec spec);
 
 void    ft_initialization(t_spec *spec);
 char	*ft_itoa_base(uintmax_t n, int base);
@@ -77,7 +77,7 @@ char *ft_string_formation_d(char *s, t_spec spec, int ln, intmax_t n);
 char *ft_string_formation_u(char *s, t_spec spec, int ln, uintmax_t n);
 char *ft_string_formation_o(char *s, t_spec spec, int ln, uintmax_t n);
 char *ft_string_formation_x(char *s, t_spec spec, int ln, uintmax_t n);
-
+char *ft_string_formation_p(char *s, t_spec spec, char *ox, uintmax_t n);
 
 //libft
 

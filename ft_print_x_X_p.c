@@ -16,7 +16,7 @@ static void ft_cast(va_list ap, t_spec spec, uintmax_t *n)
         (*n = va_arg(ap, unsigned int));
 }
 
-int ft_print_x_X(va_list ap, t_spec spec)
+int ft_print_x_X_p(va_list ap, t_spec spec)
 {
     uintmax_t n;
     char *s;

@@ -7,13 +7,13 @@ int main()
     char a1 = 'a';
     char a2 = 'a';
 
-    //int n = -42;
-
+    int n = 42;
+    char *s = 0;
     printf("\n--------------------\n");
 
-    i = ft_printf("|%.p, %.0p|", 0, 0); 
+    i = ft_printf("|%5s|", s); 
     printf("\n");
-    j = printf("|%.p, %.0p|", 0, 0);
+    j = printf("|%5s|", s);
 
     printf("\n--------------------\n(return) main: %d\n(return) orig: %d\n--------------------\n\n", i, j);
 

@@ -25,7 +25,7 @@ int ft_printf(char *format, ...)
         else if(spec.type == 'o' || spec.type == 'O')
             spec.result += ft_print_o_O(ap, spec);
         else if(spec.type == 'x' || spec.type == 'X' || spec.type == 'p')
-            spec.result += ft_print_x_X(ap, spec);
+            spec.result += ft_print_x_X_p(ap, spec);
         format += (spec.ln_search + 1) + spec.ln_text;
     }
     va_end(ap);
