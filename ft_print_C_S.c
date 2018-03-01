@@ -36,6 +36,7 @@ int ft_print_C_S(va_list ap, t_spec spec)
     n1 = 0;
     n2 = 0;
     ln = 0;
+    
     if (spec.type == 'S' || (spec.size == 2 && spec.type == 's'))
     {
         n1 = va_arg(ap, wchar_t*);
