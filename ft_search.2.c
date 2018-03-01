@@ -29,16 +29,6 @@ void ft_search_flag(char *str_search, t_spec *spec)
 {
     while (*str_search == '+' || *str_search == '-' || *str_search == ' ' || *str_search == '#' || *str_search == '0')
     {
-        // if (ft_strchr(*str_search, '+'))
-        //     spec->plus = 1;
-        // if (ft_strchr(*str_search, '-'))
-        //     spec->minus = 1;
-        // if (ft_strchr(*str_search, ' '))
-        //     spec->space = 1;
-        // if (ft_strchr(*str_search, '#'))
-        //     spec->hesh = 1;
-        // if (ft_strchr(*str_search, '0'))
-        //     spec->zero = 1;
         if (*str_search == '+')
             spec->plus = 1;
         else if (*str_search == '-')

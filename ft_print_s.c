@@ -38,10 +38,7 @@ int ft_print_s(char *s, t_spec spec)
     int ln;
 
     if (!s)
-    {
-        write (1, "(null)", 6);
-        return (6);
-    }
+        s = "(null)";
     result = 0;
     ln = ft_strlen(s);
     if (spec.width >= 0 || spec.precision >= 0)
