@@ -22,6 +22,7 @@ static int ft_print_unicode(char *s, wchar_t n)
         s[2] = ((n >> 6) & 63) | 128;
         s[3] = (n & 63) | 128;
     }
+    
     ft_putstr(s);
     return (ft_strlen(s));
 }
