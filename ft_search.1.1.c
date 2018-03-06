@@ -25,11 +25,14 @@ void ft_search(char *format, t_spec *spec)
     
     while (*str_search)
     {
-        ft_search_flag(&str_search, spec);
+        ft_search_flag(str_search, spec);
         ft_search_width_precision(&str_search, spec);
         ft_search_size(&str_search, spec);
         str_search++;
     }
+    // printf("\n");
+    // printf("plus: %d\nminus: %d\nprecision: %d\nwidth: %d\n", spec->plus, spec->minus, spec->precision, spec->width);
+    // printf("\n");
     if (!(ft_strchr(SPEC, spec->type)))
         ft_not_valid_type(spec->type, spec);
 }

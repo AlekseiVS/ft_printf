@@ -25,21 +25,21 @@ void  ft_not_valid_type(char c, t_spec *spec)
     }   
 }
 
-void ft_search_flag(char **str_search, t_spec *spec)
+void ft_search_flag(char *str_search, t_spec *spec)
 {
-    while (**str_search == '+' || **str_search == '-' || **str_search == ' ' || **str_search == '#' || **str_search == '0')
+    while (*str_search == '+' || *str_search == '-' || *str_search == ' ' || *str_search == '#' || *str_search == '0')
     {
-        if (ft_strchr(*str_search, '+'))
+        if (*str_search == '+')
             spec->plus = 1;
-        if (ft_strchr(*str_search, '-'))
+        else if (*str_search == '-')
             spec->minus = 1;
-        if (ft_strchr(*str_search, ' '))
+        else if (*str_search == ' ')
             spec->space = 1;
-        if (ft_strchr(*str_search, '#'))
+        else if (*str_search == '#')
             spec->hesh = 1;
-        if (ft_strchr(*str_search, '0'))
+        else if (*str_search == '0')
             spec->zero = 1;
-        (*str_search)++;
+        str_search++;
     }
 }
 
@@ -47,7 +47,7 @@ void ft_search_width_precision(char **str_search, t_spec *spec)
 {
     int ln;
 
-    if (ft_isdigit(**str_search) == 1)
+    if (ft_isdigit(**str_search) == 1 && **str_search != '0')
     {
         spec->width = ft_atoi(*str_search);
         ln = ft_strlen(ft_itoa(spec->width));
