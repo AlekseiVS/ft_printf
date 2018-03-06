@@ -26,7 +26,7 @@ int ft_printf(char *format, ...)
 			spec.result += ft_print_o_O(ap, spec);
 		else if(spec.type == 'x' || spec.type == 'X' || spec.type == 'p')
 			spec.result += ft_print_x_X_p(ap, spec);
-		else if(spec.type == 'C' || spec.type == 'S' || (spec.size == 2 && (spec.type == 'c' || spec.type == 's')))
+		else if((spec.type == 'C' || spec.type == 'S' || (spec.size == 2 && (spec.type == 'c' || spec.type == 's'))) && (MB_CUR_MAX != 1))
 			spec.result += ft_print_C_S(ap, spec);
 		format += (spec.ln_search + 1) + spec.ln_text;
 	}

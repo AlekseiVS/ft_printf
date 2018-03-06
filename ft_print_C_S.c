@@ -52,6 +52,7 @@ int ft_print_C_S(va_list ap, t_spec spec)
     
     if(spec.type == 'S' || (spec.size == 2 && spec.type == 's'))
     {
+        
         while(*n1 != '\0')
         {
             s = ft_strnew(4);
