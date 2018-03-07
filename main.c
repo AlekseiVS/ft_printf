@@ -11,13 +11,13 @@ int main()
 
     //int n = -42;
     //char *s = 0;
-    wchar_t *b = L"Привет";
+    //wchar_t *b = L"Привет";
     //int c = 945;
     printf("\n--------------------\n");
 
-    i = ft_printf("%S", b); 
+    i = ft_printf("{%#.5x}", 1); 
     printf("\n");
-    j = printf("%S", b);
+    j = printf("{%#.5x}", 1);
 
     printf("\n--------------------\n(return) main: %d\n(return) orig: %d\n--------------------\n\n", i, j);
 
