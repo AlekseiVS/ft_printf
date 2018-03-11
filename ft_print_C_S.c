@@ -2,7 +2,7 @@
 
 static char *ft_print_unicode(char *s, wchar_t n, int *ln)
 {
-    if (n <= 127 ||(MB_CUR_MAX == 1))
+    if (n <= 127 || (MB_CUR_MAX == 1))
         *s = n;
     else if (n <= 2047)
     {
@@ -60,11 +60,10 @@ static char *ft_width_C_S(t_spec spec, char *s, int *ln)
         s = ft_right(s, spec.width, *ln, '0');
     else if (spec.width > *ln && spec.minus == 1 && spec.precision == -1)
         s = ft_left(s, spec.width, *ln, ' ');
-    else if (spec.width > *ln && spec.zero == 1 && spec.minus == 0 && spec.precision == 0)
+    else if ((spec.width >= *ln || spec.width < *ln) && spec.zero == 1 && spec.precision == 0)
         s = ft_right(s, spec.width, 0, '0');
-    else if (spec.width > *ln && spec.precision == 0)
+    else if ((spec.width >= *ln || spec.width < *ln) && spec.precision == 0)
         s = ft_left(s, spec.width, 0, ' ');
-    
     
     *ln = ft_strlen(s);
     return (s);

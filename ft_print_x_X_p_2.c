@@ -47,7 +47,7 @@ static char *ft_sf1(char *s, t_spec spec, int ln, uintmax_t n)
 	}
 	else if (spec.hesh == 1 || (spec.hesh == 1 && spec.minus == 1))
 		result = ft_sf1_1(s, spec, ln, n);
-	else if (n == 0)
+	else if (n == 0 && spec.precision == 0)
 		result = ft_right(s, spec.width, 0, ' ');
 	else
 		result = ft_right(s, spec.width, ln, ' ');
@@ -56,10 +56,28 @@ static char *ft_sf1(char *s, t_spec spec, int ln, uintmax_t n)
 
 static char *ft_sf2(char *s, t_spec spec, int ln, char *result)
 {
+	char *ox;
+
+	ox = "0x";
 	if (spec.minus == 1)
 	{
+		if (spec.hesh == 1)
+		{
+			result = ft_right(s, spec.precision, ln, '0');
+			result = ft_strjoin(ox, result);
+			result = ft_left(result, spec.width, spec.precision + 2, ' ');
+		}
+		else
+		{
+			result = ft_right(s, spec.precision, ln, '0');
+			result = ft_left(result, spec.width, spec.precision, ' ');
+		}
+	}
+	else if (spec.hesh == 1)
+	{
 		result = ft_right(s, spec.precision, ln, '0');
-		result = ft_left(result, spec.width, spec.precision, ' ');
+		result = ft_strjoin(ox, result);
+		result = ft_right(result, spec.width, spec.precision + 2, ' ');
 	}
 	else
 	{
@@ -93,7 +111,11 @@ char *ft_string_formation_x(char *s, t_spec spec, int ln, uintmax_t n)
 	else if (ln <= spec.width && ln <= spec.precision && spec.width > spec.precision)
 		result = ft_sf2(s, spec, ln, result);
 	else if (ln < spec.precision && spec.width <= spec.precision)
+	{
 		result = ft_right(s, spec.precision, ln, '0');
+		if (spec.hesh == 1 && n != 0)
+			result = ft_strjoin(ox, result);
+	}
 	if ((spec.type == 'X') && (i = -1))
 		while (result[++i])
 			result[i] = ft_toupper(result[i]);

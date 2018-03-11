@@ -9,8 +9,8 @@ static char *ft_sf1(char *s, t_spec spec, int ln, uintmax_t n)
         result = ft_left(s, spec.width, ln, ' ');
     else if (spec.zero == 1 && spec.precision < 0)
         result = ft_right(s, spec.width, ln, '0');
-    else if (n == 0)
-        result = ft_right("", spec.width, 0, ' ');
+    else if (n == 0 && spec.precision == 0)
+        result = ft_right(s, spec.width, 0, ' '); // 0
     else
         result = ft_right(s, spec.width, ln, ' ');
     return (result);
@@ -40,9 +40,9 @@ char *ft_string_formation_u(char *s, t_spec spec, int ln, uintmax_t n)
     {
         // if (spec.space == 1)
         //     result = ft_right(s, ln + 1, ln, ' ');
-        if (spec.hesh == 1)
-            result = ft_right(s, ln + 1, ln, '0');
-        else if (n == 0)
+        // if (spec.hesh == 1)
+        //     result = ft_right(s, ln , ln, '0');
+        if (n == 0)
             result = "";
         else
             result = s;

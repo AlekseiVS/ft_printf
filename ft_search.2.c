@@ -57,6 +57,7 @@ void ft_search_width_precision(char **str_search, t_spec *spec)
     {
         (*str_search)++;
         spec->precision = ft_atoi(*str_search);
+        //printf("%d\n", spec->precision);
         ln = ft_strlen(ft_itoa(spec->precision));
         *str_search = *str_search + ln;
     }

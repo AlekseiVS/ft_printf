@@ -26,7 +26,7 @@ int ft_print_d_i_D(va_list ap, t_spec spec)
     ft_cast(ap, spec, &n);
     s = ft_itoa(n);
     ln = ft_strlen(s);
-    if (spec.width >= 0 || spec.precision >= 0 || spec.plus == 1 || spec.minus == 1 || spec.zero == 1 || spec.space == 1)
+    if (spec.width > 0 || spec.precision >= 0 || spec.plus == 1 || spec.minus == 1 || spec.zero == 1 || spec.space == 1)
     {
         result = ft_string_formation_d(s, spec, ln, n);
         ln = ft_strlen(result);

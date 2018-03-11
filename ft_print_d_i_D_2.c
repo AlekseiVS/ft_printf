@@ -23,8 +23,8 @@ static char *ft_sf1(char *s, t_spec spec, int ln, intmax_t n)
         result = ft_right(s, spec.width, ln, '0');
         result[0] = ' ';
     }
-    else if (n == 0)
-        result = ft_right("", spec.width, 0, ' ');
+    else if (n == 0 && spec.precision == 0)
+        result = ft_right(s, spec.width, 0, ' '); // Вставил 1
     else
         result = ft_right(s, spec.width, ln, ' ');
     return (result); // Сократить на 1 строку
@@ -90,9 +90,9 @@ static char *ft_sf3(char *s, t_spec spec, int ln, intmax_t n)
         result = ft_right(s, spec.precision + 1, ln, '0');
         result[0] = '+';
     }
-    else if ( n < 0) 
+    else if ( n < 0 && spec.precision >= spec.width) 
     {
-        result = ft_right(++s, spec.precision + 2, ln, '0');
+        result = ft_right(s+1, spec.precision + 2, ln, '0');
         result[0] = '-';
     }
     else if (spec.space == 1) 
@@ -123,9 +123,9 @@ char *ft_string_formation_d(char *s, t_spec spec, int ln, intmax_t n)
     }
     else if (ln <= spec.width && ln > spec.precision)
         result = ft_sf1(s, spec, ln, n);
-    else if (ln <= spec.width && ln <= spec.precision && spec.width > spec.precision)
+    else if (ln <= spec.width && ln <= spec.precision && spec.width >= spec.precision)
         result = ft_sf2(s, spec, ln, n);
-    else if (ln <= spec.precision && spec.width <= spec.precision)
+    else if (ln <= spec.precision && spec.width < spec.precision)
         result = ft_sf3(s, spec, ln, n);
     return (result);
 }

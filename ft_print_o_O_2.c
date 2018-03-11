@@ -27,8 +27,8 @@ static char *ft_sf1(char *s, t_spec spec, int ln, uintmax_t n)
             result = ft_right(result, spec.width, ft_strlen(result), ' ');
         }
     }
-    else if (n == 0)
-        result = ft_right(s, spec.width, 0, ' ');
+    else if (n == 0 && spec.precision == 0)
+        result = ft_right(s, spec.width, 0, ' '); // 1
     else
         result = ft_right(s, spec.width, ln, ' ');
     return (result);

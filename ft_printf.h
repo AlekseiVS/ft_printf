@@ -12,6 +12,7 @@
 # include <unistd.h>
 # include <wchar.h>
 # include <locale.h>
+# include <limits.h>
 
 
 typedef enum    e_size
@@ -56,7 +57,7 @@ int     ft_print_C_S(va_list ap, t_spec spec);
 void    ft_initialization(t_spec *spec);
 char	*ft_itoa_base(uintmax_t n, int base);
 int     ft_atoi_uni(char *s);
-
+//int	    ft_atoi_precision(const char *str);
 
 //Функции с ft_search.2.c
 
