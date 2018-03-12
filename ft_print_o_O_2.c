@@ -59,9 +59,9 @@ char *ft_string_formation_o(char *s, t_spec spec, int ln, uintmax_t n)
         // if (spec.space == 1)
         //     result = ft_right(s, ln + 1, ln, ' ');
         if (n == 0 && spec.hesh == 0)
-            result = "";
+            result = ft_strdup("");
         else if (spec.hesh == 1 && n == 0)
-            result = "0";
+            result = ft_strdup("0");
         else if (spec.hesh == 1 && n != 0)
         {
             result = ft_right(s, ln + 1, ln, '0');

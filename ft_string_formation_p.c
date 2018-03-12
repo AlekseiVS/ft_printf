@@ -5,7 +5,7 @@ char *ft_string_formation_p(char *s, t_spec spec, char *ox, uintmax_t n)
 	char *result;
 	
 	if (spec.precision == 0 && n == 0 && spec.width == -1)
-		result = ft_strjoin(ox, "");
+		result = ft_strjoin(ox, ft_strdup(""));
 	else if (spec.precision >= 0 && n == 0 && spec.width == -1)
 	{
 		result = ft_right(s, spec.precision, 0, '0');
@@ -24,7 +24,8 @@ char *ft_string_formation_p(char *s, t_spec spec, char *ox, uintmax_t n)
 	else if ((spec.width > (int)ft_strlen(s)) && ((int)ft_strlen(s) > spec.precision) && spec.minus == 1 && (n == 0 || n > 0))
 	{
 		result = ft_strjoin(ox, s);
-		result = ft_left(result, spec.width, ft_strlen(result), ' ');
+		if ((int)ft_strlen(result) < spec.width)
+			result = ft_left(result, spec.width, ft_strlen(result), ' ');
 	}
 	else if ((spec.width < (int)ft_strlen(s)) && ((int)ft_strlen(s) < spec.precision))
 	{

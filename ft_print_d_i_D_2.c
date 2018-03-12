@@ -117,7 +117,7 @@ char *ft_string_formation_d(char *s, t_spec spec, int ln, intmax_t n)
         else if (spec.space == 1 && n >= 0)
             result = ft_right(s, ln + 1, ln, ' ');
         else if (n == 0)
-            result = "";
+            result = ft_strdup("");
         else
             result = s;
     }

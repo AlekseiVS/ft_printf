@@ -100,6 +100,7 @@ void	*ft_memset(void *dst, int c, size_t n);
 void	ft_putstr(char const *s);
 char	*ft_strjoin(char const *s1, char const *s2);
 int     ft_toupper(int c);
-
+void    ft_strdel(char **as);
+void	ft_memdel(void **ap);
 #endif
 

@@ -26,18 +26,19 @@ static char *ft_print_unicode(char *s, wchar_t n, int *ln)
     return(s);
 }
 
-static char *ft_C_S(t_spec spec, int *ln, wchar_t *n_S, wchar_t n_C)
+static char *ft_formation_string_C_S(t_spec spec, int *ln, wchar_t *n_S, wchar_t n_C)
 {
     char *str;
     char *s;
 
-    str = "";
+    str = ft_strdup("");
     if(spec.type == 'S' || (spec.size == 2 && spec.type == 's'))
     {
         while(*n_S != '\0')
         {
             s = ft_strnew(4);
             str = ft_strjoin(str, ft_print_unicode(s, *n_S, ln));
+            ft_strdel(&s);
             n_S++;
         }
     }
@@ -45,12 +46,10 @@ static char *ft_C_S(t_spec spec, int *ln, wchar_t *n_S, wchar_t n_C)
     {
         s = ft_strnew(4);
         str = ft_print_unicode(s, n_C, ln);
+        ft_strdel(&s);        
     }
     return (str);
 }
-
-
-
 
 static char *ft_width_C_S(t_spec spec, char *s, int *ln)
 {
@@ -64,22 +63,16 @@ static char *ft_width_C_S(t_spec spec, char *s, int *ln)
         s = ft_right(s, spec.width, 0, '0');
     else if ((spec.width >= *ln || spec.width < *ln) && spec.precision == 0)
         s = ft_left(s, spec.width, 0, ' ');
-    
     *ln = ft_strlen(s);
     return (s);
 }
-
-
-
-
-
-
 
 int ft_print_C_S(va_list ap, t_spec spec)
 {
     wchar_t *n_S;
     wchar_t n_C;
     char *s;
+    char *tmp;
     int ln;
 
     n_S = 0;
@@ -97,8 +90,10 @@ int ft_print_C_S(va_list ap, t_spec spec)
         if (n_C == 0)
             return (write(1, "\0", 1));
     }
-    s = ft_C_S(spec, &ln, n_S, n_C);
-    s = ft_width_C_S(spec, s, &ln);
-    ft_putstr(s);
+    s = ft_formation_string_C_S(spec, &ln, n_S, n_C);
+    tmp = ft_width_C_S(spec, s, &ln);
+    ft_putstr(tmp);
+    // ft_strdel(&tmp);
+    // ft_strdel(&s);
     return (ln);
 }

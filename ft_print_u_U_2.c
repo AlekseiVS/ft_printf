@@ -38,12 +38,8 @@ char *ft_string_formation_u(char *s, t_spec spec, int ln, uintmax_t n)
     result = 0;
     if (ln >= spec.width && ln >= spec.precision)
     {
-        // if (spec.space == 1)
-        //     result = ft_right(s, ln + 1, ln, ' ');
-        // if (spec.hesh == 1)
-        //     result = ft_right(s, ln , ln, '0');
         if (n == 0)
-            result = "";
+            result = ft_strdup("");
         else
             result = s;
     }

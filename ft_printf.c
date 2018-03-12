@@ -6,6 +6,7 @@ int ft_printf(char *format, ...)
 	va_list ap;
 	va_start(ap, format);
 	
+	ft_initialization(&spec);
 	spec.result = 0;
 	while(*format)
 	{
