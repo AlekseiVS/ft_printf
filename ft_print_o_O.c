@@ -26,7 +26,6 @@ int ft_print_o_O(va_list ap, t_spec spec)
     ft_cast(ap, spec, &n);
     s = ft_itoa_base(n, 8);
     ln = ft_strlen(s);
-
     if (spec.width >= 0 || spec.precision >= 0 || spec.minus == 1 || spec.zero == 1 || spec.hesh == 1)
     {
         result = ft_string_formation_o(s, spec, ln, n);

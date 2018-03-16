@@ -15,7 +15,7 @@ char *ft_print_s_1(t_spec spec, char *s, int ln)
     else if (spec.precision >= 0 && spec.width >= 0 && (spec.precision > spec.width))
         s = ft_right(s, spec.precision, ln, ' ');
     else if (spec.zero == 1 && spec.precision < 0)
-            s = ft_right(s, spec.width, ln, '0');
+        s = ft_right(s, spec.width, ln, '0');
     return (s);
 }
 
@@ -57,7 +57,7 @@ int ft_print_s(char *s, t_spec spec)
             s = ft_print_s_2(spec, s, ln);
         ln = ft_strlen(s);
         write (1, s, ln);
-        free(s);
+        ft_strdel(&s);
         return (ln);
     }
     write (1, s, ft_strlen(s));

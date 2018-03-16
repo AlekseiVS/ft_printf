@@ -1,5 +1,5 @@
 #include "ft_printf.h"
-//#ifdef NUM
+
 int main()
 {
     setlocale(LC_ALL, "");
@@ -12,30 +12,32 @@ int main()
     int x;
     x = 3;
 
-    //int nmb = 42;
+    int n = 42;
     //char *s = 0;
     //wchar_t *b = L"我是一只猫。";
     //char *c;
 
     // int c = 945;
     printf("\n--------------------\n");
-    i = ft_printf("%#o", 0);
+    i = ft_printf("%.p", &n);
     printf("\n");
-    j = printf("%#o", 0);
-
-    // while (x--)
-    // {
-    //     ft_printf("|{%10d}|\n", 42);
-    //     ft_printf("|{%4d}|\n", 10000);
-    //     ft_printf("|{%30d}|\n", 10000);
-    // }
-
+    j = printf("%.p", &n);
 
     printf("\n--------------------\n(return) main: %d\n(return) orig: %d\n--------------------\n\n", i, j);
-
+    system("leaks a.out");
     return (0);
 }
   
+// int main(void)
+// {
+//     setlocale(LC_ALL, "");
+
+//   ft_printf("%S\n", L"ݗݜशব");
+//   //ft_printf("%C\n", 15000);
+
+//   return (0);
+// }
+
 
 
 

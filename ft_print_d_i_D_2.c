@@ -33,42 +33,49 @@ static char *ft_sf1(char *s, t_spec spec, int ln, intmax_t n)
  static char *ft_sf2_1(char *s, t_spec spec, int ln)
  {
     char *result;
+    char *tmp;
 
     result = 0;
     if (spec.minus == 1 && spec.plus == 1)
     {
         result = ft_right(s, spec.precision + 1, ln, '0');
         result[0] = '+';
+        tmp = result;
         result = ft_left(result, spec.width, spec.precision + 1, ' ');
     }
     else if (spec.plus == 1)
     {
         result = ft_right(s, spec.precision + 1, ln, '0');
         result[0] = '+';
+        tmp = result;
         result = ft_right(result, spec.width, spec.precision + 1, ' ');
     }
     else if (spec.minus == 1)
     {
         result = ft_right(s, spec.precision, ln, '0');
+        tmp = result;
         result = ft_left(result, spec.width, spec.precision, ' ');
     }
+    ft_strdel(&tmp);
     return (result);
  } 
 
 static char *ft_sf2(char *s, t_spec spec, int ln, intmax_t n)
 {
     char *result;
-
+    char *tmp;
     if (spec.minus == 0 && n < 0) 
     {
         result = ft_right(++s, spec.precision + 2, ln, '0');
         result[0] = '-';
+        tmp = result;
         result = ft_right(result, spec.width, spec.precision + 1, ' ');
     }
     else if (spec.minus == 1 && n < 0) 
     {
         result = ft_right(++s, spec.precision + 2, ln, '0');
         result[0] = '-';
+        tmp = result;
         result = ft_left(result, spec.width, spec.precision + 1, ' ');
     }
     else if (/*(spec.minus == 1 && spec.plus == 1) || */(spec.plus == 1) || (spec.minus == 1))
@@ -76,8 +83,10 @@ static char *ft_sf2(char *s, t_spec spec, int ln, intmax_t n)
     else
     {
         result = ft_right(s, spec.precision, ln, '0');
+        tmp = result;
         result = ft_right(result, spec.width, spec.precision, ' ');
     }
+    ft_strdel(&tmp);
     return (result);
 }
 

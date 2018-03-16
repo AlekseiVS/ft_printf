@@ -4,13 +4,12 @@ static char *ft_sf1(char *s, t_spec spec, int ln, uintmax_t n)
 {
     char *result;
 
-    result = 0;
     if (spec.minus == 1)
         result = ft_left(s, spec.width, ln, ' ');
     else if (spec.zero == 1 && spec.precision < 0)
         result = ft_right(s, spec.width, ln, '0');
     else if (n == 0 && spec.precision == 0)
-        result = ft_right(s, spec.width, 0, ' '); // 0
+        result = ft_right(s, spec.width, 0, ' ');
     else
         result = ft_right(s, spec.width, ln, ' ');
     return (result);
@@ -18,15 +17,19 @@ static char *ft_sf1(char *s, t_spec spec, int ln, uintmax_t n)
 
 static char *ft_sf2(char *s, t_spec spec, int ln, char *result)
 {
+    char *tmp;
+
     if (spec.minus == 1)
     {
-        result = ft_right(s, spec.precision, ln, '0');
-        result = ft_left(result, spec.width, spec.precision, ' ');
+        tmp = ft_right(s, spec.precision, ln, '0');
+        result = ft_left(tmp, spec.width, spec.precision, ' ');
+        ft_strdel(&tmp);
     }
     else
     {
-        result = ft_right(s, spec.precision, ln, '0');
-        result = ft_right(result, spec.width, spec.precision, ' ');
+        tmp = ft_right(s, spec.precision, ln, '0');
+        result = ft_right(tmp, spec.width, spec.precision, ' ');
+        ft_strdel(&tmp);
     }
     return (result);
 }

@@ -46,20 +46,24 @@ void ft_search_flag(char *str_search, t_spec *spec)
 void ft_search_width_precision(char **str_search, t_spec *spec)
 {
     int ln;
+    char *tmp;
 
     if (ft_isdigit(**str_search) == 1 && **str_search != '0')
     {
         spec->width = ft_atoi(*str_search);
-        ln = ft_strlen(ft_itoa(spec->width));
+        tmp = ft_itoa(spec->width);
+        ln = ft_strlen(tmp);
         *str_search = *str_search + ln;
+        ft_strdel(&tmp);
     }
     if (**str_search == '.') //&& ft_isdigit(*((*str_search) + 1)) == 1)  
     {
         (*str_search)++;
         spec->precision = ft_atoi(*str_search);
-        //printf("%d\n", spec->precision);
-        ln = ft_strlen(ft_itoa(spec->precision));
+        tmp = ft_itoa(spec->precision);
+        ln = ft_strlen(tmp);
         *str_search = *str_search + ln;
+        ft_strdel(&tmp);
     }
 }
 

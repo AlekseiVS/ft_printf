@@ -6,7 +6,7 @@ int ft_printf(char *format, ...)
 	va_list ap;
 	va_start(ap, format);
 	
-	ft_initialization(&spec);
+	//ft_initialization(&spec);
 	spec.result = 0;
 	while(*format)
 	{
@@ -26,7 +26,10 @@ int ft_printf(char *format, ...)
 		else if(spec.type == 'x' || spec.type == 'X' || spec.type == 'p')
 			spec.result += ft_print_x_X_p(ap, spec);
 		else if(spec.type == 'C' || spec.type == 'S' || (spec.size == 2 && (spec.type == 'c' || spec.type == 's')))
+		{
 			spec.result += ft_print_C_S(ap, spec);
+			// sleep(5);			
+		}
 		format += (spec.ln_search + 1) + spec.ln_text;
 	}
 	va_end(ap);

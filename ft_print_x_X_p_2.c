@@ -4,24 +4,35 @@ static char *ft_sf1_1(char *s, t_spec spec, int ln, uintmax_t n)
 {
 	char *result;
 	char *ox;
+	char *tmp;
 	
 	ox = "0x";
 	if (spec.minus == 1)
 	{
 		result = ft_right(s, ln, ln, '0');
+		tmp = result;
 		result = ft_strjoin(ox, s);
+		ft_strdel(&tmp);
+		tmp = result;
 		result = ft_left(result, spec.width, ft_strlen(result), ' ');
+		ft_strdel(&tmp);
 	}
 	else if (n == 0)
 	{
 		result = ft_right(s, ln, ln, '0');
+		tmp = result;
 		result = ft_right(result, spec.width, ft_strlen(result), ' ');
+		ft_strdel(&tmp);
 	}
 	else
 	{
 		result = ft_right(s, ln, ln, '0');
+		tmp = result;
 		result = ft_strjoin(ox, s);
+		ft_strdel(&tmp);
+		tmp = result;
 		result = ft_right(result, spec.width, ft_strlen(result), ' ');
+		ft_strdel(&tmp);
 	}
 	return (result);
 }
@@ -30,6 +41,7 @@ static char *ft_sf1(char *s, t_spec spec, int ln, uintmax_t n)
 {
 	char *result;
 	char *ox;
+	char *tmp;
 
 	result = 0;
 	ox = "0x";
@@ -40,7 +52,9 @@ static char *ft_sf1(char *s, t_spec spec, int ln, uintmax_t n)
 		if (spec.hesh == 1)
 		{
 			result = ft_right(s, spec.width - 2, ln, '0');
+			tmp = result;
 			result = ft_strjoin(ox, result);
+			ft_strdel(&tmp);
 		}
 		else
 			result = ft_right(s, spec.width, ln, '0');
@@ -54,35 +68,50 @@ static char *ft_sf1(char *s, t_spec spec, int ln, uintmax_t n)
 	return (result);
 }
 
-static char *ft_sf2(char *s, t_spec spec, int ln, char *result)
+static char *ft_sf2(char *s, t_spec spec, int ln)
 {
 	char *ox;
+	char *result;
+	char *tmp;
 
 	ox = "0x";
+	result = 0;
 	if (spec.minus == 1)
 	{
 		if (spec.hesh == 1)
 		{
 			result = ft_right(s, spec.precision, ln, '0');
+			tmp = result;
 			result = ft_strjoin(ox, result);
+			ft_strdel(&tmp);
+			tmp = result;
 			result = ft_left(result, spec.width, spec.precision + 2, ' ');
+			ft_strdel(&tmp);
 		}
 		else
 		{
 			result = ft_right(s, spec.precision, ln, '0');
+			tmp = result;
 			result = ft_left(result, spec.width, spec.precision, ' ');
+			ft_strdel(&tmp);
 		}
 	}
 	else if (spec.hesh == 1)
 	{
 		result = ft_right(s, spec.precision, ln, '0');
+		tmp = result;
 		result = ft_strjoin(ox, result);
+		ft_strdel(&tmp);
+		tmp = result;
 		result = ft_right(result, spec.width, spec.precision + 2, ' ');
+		ft_strdel(&tmp);
 	}
 	else
 	{
 		result = ft_right(s, spec.precision, ln, '0');
+		tmp = result;
 		result = ft_right(result, spec.width, spec.precision, ' ');
+		ft_strdel(&tmp);
 	}
 	return (result);
 }
@@ -92,6 +121,7 @@ char *ft_string_formation_x(char *s, t_spec spec, int ln, uintmax_t n)
 	char *result;
 	char *ox;
 	int		i;
+	char *tmp;
 
 	result = 0;
 	ox = "0x";
@@ -109,12 +139,16 @@ char *ft_string_formation_x(char *s, t_spec spec, int ln, uintmax_t n)
 	else if (ln <= spec.width && ln > spec.precision)
 		result = ft_sf1(s, spec, ln, n);
 	else if (ln <= spec.width && ln <= spec.precision && spec.width > spec.precision)
-		result = ft_sf2(s, spec, ln, result);
+		result = ft_sf2(s, spec, ln);
 	else if (ln < spec.precision && spec.width <= spec.precision)
 	{
 		result = ft_right(s, spec.precision, ln, '0');
 		if (spec.hesh == 1 && n != 0)
+		{
+			tmp = result;
 			result = ft_strjoin(ox, result);
+			ft_strdel(&tmp);
+		}
 	}
 	if ((spec.type == 'X') && (i = -1))
 		while (result[++i])

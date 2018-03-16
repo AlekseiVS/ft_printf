@@ -27,7 +27,6 @@ char *ft_right(char *s, int width, int precision, char c)
 
     i = 0;
     j = 0;
-
     ln_c = width - precision;
     snew = ft_strnew(width);
     while(i < width)
