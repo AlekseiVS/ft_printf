@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: osokoliu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/28 16:04:45 by osokoliu          #+#    #+#             */
-/*   Updated: 2017/12/05 17:42:48 by osokoliu         ###   ########.fr       */
+/*   Created: 2018/03/17 12:42:14 by osokoliu          #+#    #+#             */
+/*   Updated: 2018/03/17 12:44:45 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static	size_t		len_n(uintmax_t n, int base)
 	return (len);
 }
 
-char			*ft_itoa_base(uintmax_t n, int base)
+char				*ft_itoa_base(uintmax_t n, int base)
 {
 	int				len;
 	char			*str;

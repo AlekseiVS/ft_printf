@@ -6,13 +6,13 @@
 /*   By: osokoliu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 16:04:45 by osokoliu          #+#    #+#             */
-/*   Updated: 2017/12/05 17:42:48 by osokoliu         ###   ########.fr       */
+/*   Updated: 2018/03/17 18:29:03 by osokoliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static	size_t		len_n(uintmax_t n, int c)
+static size_t	len_n(uintmax_t n, int c)
 {
 	size_t len;
 
@@ -31,11 +31,11 @@ static	size_t		len_n(uintmax_t n, int c)
 
 char			*ft_itoa(intmax_t n)
 {
-	int				len;
-	int				c;
-	char			*str;
-	uintmax_t 		u_n;
-	
+	int			len;
+	int			c;
+	char		*str;
+	uintmax_t	u_n;
+
 	c = 0;
 	if (n < 0)
 		c = 1;
